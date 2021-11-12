@@ -83,6 +83,7 @@ if theLen >= 2:
 					print("\nUnknown operation on type")
 
 		elif name_operation == '-name':
+			dir_file = sys.argv[3]
 
 			print("pattern: " , sys.argv[3])
 
@@ -91,8 +92,13 @@ if theLen >= 2:
 			# for f in files:
 				# do something
 
-			files = glob.glob(sys.argv[3])		
+			# files = glob.glob(sys.argv[3])		
 
-			for f in files:
-				print(f)
-
+			for rot, dirs, files in os.walk(root, topdown=True):
+				print("dir_file: ", dir_file)
+				#for name in files:
+				#	if name in glob.glob(dir_file):
+				#		print(os.path.join(rot, name)) 
+				for path in Path(root).rglob(dir_file):
+					#print(os.path.join(root, path.name)
+					print(root + '/' + path.name)
